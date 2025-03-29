@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>That’s Not A Nice Luggage</title>
+    <link rel="stylesheet" href="style1.css" />
+  </head>
+  <body>
+    <div id="tutorial-container">
+      <div id="tutorial-page">
+        <h1>How To Play</h1>
+        <button id="close-tutorial">x</button>
+      </div>
+      <div class="shadow"></div>
+    </div>
+    <div id="content-container">
+      <div class="conveyor">
+        <img class="luggage run-animate" src="../image/Luggage1.png" />
+
+        <div id="belt">
+          <div class="circle-belt shake-animate">
+            <script>
+              window.onload = updateScreenWidth;
+              window.addEventListener("resize", updateScreenWidth);
+              const item = document.querySelector(".circle-belt");
+              const container = document.getElementById("belt");
+              function updateScreenWidth() {
+                const screenWidth = window.innerWidth;
+                console.log(screenWidth);
+                const itemCount = screenWidth / 13;
+
+                container.innerHTML = "";
+
+                for (let i = 0; i < itemCount; i++) {
+                  const copiedItem = item.cloneNode(true);
+                  const randomDelay = Math.random() * 2;
+                  copiedItem.style.animationDelay = `${randomDelay}s`;
+                  container.appendChild(copiedItem);
+                }
+              }
+            </script>
+          </div>
+        </div>
+      </div>
+      <h1 id="gamename">That’s Not<br />a Nice Luggage</h1>
+      <a id="next" href="play.html">START</a>
+      <button id="tutorial-btn">TUTORIAL</button>
+      <script>
+        openBtn = document.getElementById("tutorial-btn");
+        closeBtn = document.getElementById("close-tutorial");
+        content = document.getElementById("tutorial-container");
+
+        openBtn.addEventListener("click", () => {
+          content.style.display = "flex";
+        });
+        closeBtn.addEventListener("click", () => {
+          content.style.display = "none";
+        });
+      </script>
+    </div>
+  </body>
+</html>

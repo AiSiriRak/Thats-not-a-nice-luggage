@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Airport Security Check</title>
+
+    <link rel="stylesheet" href="style2.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <audio id="wrong-eff">
+      <source src="../sound/wrong.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="correct-eff">
+      <source src="../sound/correct.mp3" type="audio/mpeg" />
+    </audio>
+
+    <img id="manual-btn" src="../image/guide_cover.png" />
+    <div id="manualModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <img src="../image/guide_inside.png" id="manual-img" class="zoom-img" />
+        <span class="close">&times;</span>
+      </div>
+    </div>
+
+    <button id="setting-btn"><i class="fa fa-gear"></i></button>
+    <div id="setting-modal" class="modal-setting">
+      <div class="button-container">
+        <h2>Setting</h2>
+
+        <!-- Sound Controls Section -->
+        <div class="sound-section">
+          <div class="audio-controls">
+            <button id="toggleSound" class="sound-btn">🔊</button>
+            <input
+              type="range"
+              id="volumeSlider"
+              min="0"
+              max="1"
+              step="0.1"
+              value="0.7"
+            />
+            <audio id="backgroundAudio" loop>
+              <source src="../sound/test.mp3" type="audio/mpeg" />
+            </audio>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="button-group">
+          <button class="return-btn">Return</button>
+          <button class="home-btn">
+            <i
+              class="fa fa-home"
+              aria-hidden="true"
+              style="margin-right: 10px"
+            ></i>
+            Home
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <h1>Airport Security Check!</h1>
+    <p id="score" class="score">0</p>
+    <div class="conveyor">
+      <div id="belt">
+        <div class="circle-belt shake-animate"></div>
+      </div>
+      <img
+        class="luggage1 run-animate1"
+        src="https://medias.watsons.co.th/publishing/WTCTH-308451-back-zoom.jpg?version=1723662609"
+        onclick="openContainer()"
+      />
+      <img
+        class="luggage2 run-animate2"
+        src="https://medias.watsons.co.th/publishing/WTCTH-308451-back-zoom.jpg?version=1723662609"
+        onclick="openContainer()"
+      />
+    </div>
+    <div id="play-container">
+      <div class="grid-container" id="gridContainer"></div>
+      <button id="done-btn">done</button> <br />
+      <button id="win-skip">win</button> <br />
+      <button id="lose-skip">lose</button> <br />
+    </div>
+
+    <!-- <p id="result"></p> -->
+    <div id="showimgModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="textdetail"></p>
+        <img src="" id="bigimage" />
+      </div>
+    </div>
+
+    <div id="winModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <!-- <span class="close">&times;</span> -->
+        <h2>Congratulations</h2>
+        <p>you win</p>
+        <button class="restart">restart</button>
+        <!-- Moved inside modal-content -->
+      </div>
+    </div>
+
+    <div id="wrongModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <!-- <span class="close">&times;</span> -->
+        <p>you lose</p>
+        <p id="lastscore"></p>
+        <div id="result"></div>
+        <button class="restart">restart</button>
+        <!-- Placed below result -->
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

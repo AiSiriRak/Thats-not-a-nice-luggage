@@ -1,0 +1,525 @@
+@import url("https://fonts.googleapis.com/css?family=Lobster");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* general */
+h1 {
+  font-family: "Lobster";
+  margin-top: 50px;
+  font-size: clamp(0px, 8vw, 56px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+h2 {
+  margin-top: 10px;
+  font-family: "Kanit";
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 40px;
+  font-family: "Kanit";
+  margin-top: 16px;
+  padding: auto;
+  color: black;
+}
+
+.score {
+  background-color: #404040;
+  color: white;
+  font-size: 5vh;
+  padding: 2vh 7vh;
+  text-align: center;
+  display: inline-block;
+  border-radius: 8px;
+}
+
+#setting-btn {
+  color: #000000;
+  padding: 2vh 2vh;
+  font-size: 4vh;
+  height: 10vh;
+  width: 10vh;
+  border-radius: 100%;
+  border: 0px;
+  background-color: rgb(0, 0, 0, 0);
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#setting-btn:hover {
+  color: #ffffff;
+  background-color: rgb(0, 0, 0, 0.3);
+  border-radius: 100%;
+  border: 0px;
+  transform: scale(1.3);
+}
+
+.modal-setting {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  font-size: 24px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sound-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sound-btn {
+  margin: auto;
+  font-size: 24px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-container {
+  font-family: "Lobster";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 350px;
+  border-radius: 20px;
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#volumeSlider {
+  width: 290px;
+  accent-color: #000; /* For modern browsers */
+}
+
+/* input[type="range"] {
+  -webkit-appearance: none;
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+} */
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.return-btn,
+.home-btn {
+  background-color: #141414;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px 30px;
+  border-radius: 5px;
+  flex: 1;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.return-btn:hover,
+.home-btn:hover {
+  background-color: #320064;
+}
+
+body {
+  text-align: center;
+  /* font-family: 'Lobster','Kanit'; */
+
+  background-color: #f0f0f0;
+}
+
+/* bag on belt */
+.conveyor {
+  max-height: 40vh;
+  position: absolute;
+  right: 0px;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 10vh;
+}
+
+#belt {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  bottom: 0px;
+  overflow: hidden;
+  width: 100vw;
+  height: 20px;
+  gap: 1px;
+  background: rgb(0, 0, 0, 0);
+}
+.circle-belt {
+  position: absolute;
+  overflow: hidden;
+  top: auto;
+  bottom: auto;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  background-color: #909090;
+  position: relative;
+}
+.shake-animate {
+  animation: shakeY 0.3s ease-in-out infinite;
+}
+@keyframes shakeY {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-0.5px);
+  }
+  50% {
+    transform: translateY(0.5px);
+  }
+  75% {
+    transform: translateY(-0.5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.luggage1 {
+  position: absolute;
+  width: 300px;
+  height: 150px;
+  background: black;
+  border-radius: 10px;
+  overflow: hidden;
+  top: auto;
+  bottom: 22px;
+}
+.luggage2 {
+  position: absolute;
+  width: 300px;
+  height: 150px;
+  background: black;
+  border-radius: 10px;
+  overflow: hidden;
+  top: auto;
+  bottom: 22px;
+
+  animation: moveLuggage2 10s linear forwards;
+}
+
+.run-animate1 {
+  animation: shake 0.3s ease-in-out infinite, moveLuggage1 8s linear forwards;
+}
+.run-animate2 {
+  animation: shake 0.3s ease-in-out infinite, moveLuggage1 8s linear forwards;
+}
+.luggage1:hover,
+.luggage2:hover {
+  color: #ffffff;
+  background-color: rgb(0, 0, 0, 0.3);
+  border-radius: 100%;
+  border: 0px;
+  transform: scale(1.3);
+  cursor: pointer;
+}
+@keyframes moveLuggage1 {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes moveLuggage2 {
+  0% {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  100% {
+    left: 150%;
+  }
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: translateX(-2px);
+    transform: rotate(1deg);
+  }
+  50% {
+    transform: translateX(2px);
+    transform: rotate(-1deg);
+  }
+  75% {
+    transform: translateX(-2px);
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: translateX(0);
+    transform: rotate(0deg);
+  }
+}
+
+/* ------Game Page--------- */
+canvas {
+  border: 2px solid black;
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid-container {
+  font-family: "Kanit";
+  border: 2px solid black;
+  border-radius: 25px;
+  padding: 20px 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 420px;
+  background-color: #818181;
+}
+
+.grid-item {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #00000000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  overflow: hidden;
+  cursor: pointer;
+
+  flex-direction: column;
+}
+
+.grid-item:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255));
+}
+.grid-item.select {
+  filter: brightness(0.3);
+  opacity: 0.3;
+
+  /* outline: 3px solid #ff0000ff; */
+  /* filter: drop-shadow(3px 3px 0 rgb(0, 0, 0)); */
+}
+
+.item-img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+#play-container {
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  justify-self: center;
+}
+
+#bigimage {
+  height: 40%;
+  width: auto;
+}
+#setting-modal,
+#showimgModel,
+#wrongModal,
+#manualModal #correctModal,
+#winModal {
+  display: none;
+}
+/* -----MANUAL-------- */
+/* Shadow */
+.modal {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  font-size: 24px;
+  overflow: hidden;
+}
+
+/* Modal Content */
+.modal-content {
+  overflow: hidden;
+  top: 10%;
+  left: 0%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 90%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#manual-img {
+  overflow: hidden;
+  width: auto;
+  max-width: 90vw;
+  position: flex;
+  margin-bottom: 5vh;
+}
+
+.close {
+  padding: 10px 10px;
+  font-size: 32px;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  border: 0px;
+  background-color: rgba(255, 255, 255, 0);
+  transition: transform 0.3s ease;
+  color: #f0f0f0;
+  margin-bottom: 5vh;
+}
+
+.close:hover,
+.close:focus {
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.3);
+}
+
+#manual-btn {
+  position: fixed;
+  z-index: 1;
+  right: 3%;
+  bottom: 2%;
+  width: 10vh;
+  height: auto;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+#manual-btn:hover {
+  color: #ffffff;
+  border: 0px;
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+}
+button {
+  font-family: "Lobster";
+  background-color: #141414;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.active {
+  padding: 14px 48px;
+  background-color: #320064;
+}
+
+.restart {
+  padding: 14px 48px;
+  background-color: #141414;
+}
+
+.restart:hover {
+  background-color: #320064;
+}
+
+#wrongModal .modal-content {
+  color: black;
+  display: flex;
+  position: absolute;
+  top: 50%; /* Move to the center from the top */
+  left: 50%; /* Move to the center from the left */
+  transform: translate(-50%, -50%); /* Adjust for exact centering */
+  padding: 20px;
+  width: auto;
+  height: auto;
+  background-color: #fff; /* Set background color for modal content */
+  border-radius: 10px; /* Optional for rounded corners */
+}
+
+#wrongModal .modal-content p {
+  margin: 10px;
+}
+
+#wrongModal .restart {
+  margin-top: 20px;
+}
+
+#winModal .modal-content {
+  color: black;
+  display: flex;
+  position: absolute;
+  top: 50%; /* Move to the center from the top */
+  left: 50%; /* Move to the center from the left */
+  transform: translate(-50%, -50%); /* Adjust for exact centering */
+  padding: 20px;
+  width: auto;
+  height: auto;
+  background-color: #fff; /* Set background color for modal content */
+  border-radius: 10px; /* Optional for rounded corners */
+}
+
+#lastscore {
+  font-size: 18px;
+  margin: auto;
+}
+
+#result {
+  margin-top: 15px;
+  font-family: "Kanit";
+}
