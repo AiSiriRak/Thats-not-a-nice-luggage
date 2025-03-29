@@ -43,7 +43,7 @@
               min="0"
               max="1"
               step="0.1"
-              value="0.5"
+              value="0.3"
             />
             <audio id="backgroundAudio" loop>
               <source src="../sound/test.mp3" type="audio/mpeg" />
@@ -66,11 +66,31 @@
       </div>
     </div>
 
-    <h1>Airport Security Check!</h1>
+    <h1 id="name">Airport Security Check!</h1>
     <p id="score" class="score">0</p>
     <div class="conveyor">
       <div id="belt">
         <div class="circle-belt shake-animate"></div>
+        <script>
+          window.onload = updateScreenWidth;
+          window.addEventListener("resize", updateScreenWidth);
+
+          const item = document.querySelector(".circle-belt");
+          const container = document.getElementById("belt");
+          function updateScreenWidth() {
+            const screenWidth = window.innerWidth;
+            const itemCount = screenWidth / 13;
+
+            container.innerHTML = "";
+
+            for (let i = 0; i < itemCount; i++) {
+              const copiedItem = item.cloneNode(true);
+              const randomDelay = Math.random() * 2;
+              copiedItem.style.animationDelay = `${randomDelay}s`;
+              container.appendChild(copiedItem);
+            }
+          }
+        </script>
       </div>
       <img
         class="luggage1 run-animate1"
@@ -85,7 +105,7 @@
     </div>
     <div id="play-container">
       <div class="grid-container" id="gridContainer"></div>
-      <button id="done-btn">done</button> <br />
+      <button id="done-btn">Check</button> <br />
       <!-- <button id="win-skip">win</button> <br />
       <button id="lose-skip">lose</button> <br /> -->
     </div>
@@ -104,9 +124,10 @@
       <!-- Modal content -->
       <div class="modal-content">
         <!-- <span class="close">&times;</span> -->
-        <h2>Congratulations !</h2>
-        <p>you win</p>
-        <button class="restart">restart</button>
+        <h2>Congratulations🎉🎉</h2>
+        <p id="score-result"></p>
+        <p>You Win!!!</p>
+        <button class="restart">Play Again</button>
         <!-- Moved inside modal-content -->
       </div>
     </div>
@@ -115,10 +136,11 @@
       <!-- Modal content -->
       <div class="modal-content">
         <!-- <span class="close">&times;</span> -->
-        <p>you lose</p>
+        <p>You Lose</p>
+        <p>Better luck Next Time!</p>
         <p id="lastscore"></p>
         <div id="result"></div>
-        <button class="restart">restart</button>
+        <button class="restart">Try Again</button>
         <!-- Placed below result -->
       </div>
     </div>

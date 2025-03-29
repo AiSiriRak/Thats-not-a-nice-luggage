@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Lobster");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 body {
   /* align-self: center; */
@@ -16,6 +17,17 @@ body {
   /* font-size: 2vw; */
 }
 
+p {
+  font-family: "Kanit";
+}
+
+img,
+button {
+  -webkit-user-drag: none;
+}
+* {
+  user-select: none;
+}
 #content-container {
   top: 0;
   left: 0;
@@ -149,6 +161,9 @@ body {
   text-align: center;
   font-size: 10vh;
 }
+a {
+  -webkit-user-drag: none;
+}
 a:link,
 a:visited {
   background-color: #2d2d2d;
@@ -206,37 +221,63 @@ a:active {
   z-index: 1;
 }
 #tutorial-page {
+  /* font-family: "Lobster", "Kanit"; */
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  position: absolute;
+  position: relative;
   z-index: 2;
   background: #e9e9e9;
   width: 80vw;
-  height: 80vh;
-  border-radius: 5vh;
-
+  height: auto;
+  max-width: 70vw;
+  max-height: 70vh;
+  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   flex-direction: column;
+  overflow: auto;
+}
+#tutorial-page::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+#tutorial-page::-webkit-scrollbar-thumb {
+  width: 10px;
+  background-color: rgb(88, 88, 88);
+  border-radius: 100vw;
+}
+
+#tutorial-page h1 {
+  margin-top: 50vh;
+  font-family: "Lobster";
+  font-size: 24px;
+}
+
+.img-item {
+  max-width: auto;
+  max-height: 160px;
+  object-fit: contain;
 }
 
 #close-tutorial {
-  padding: 2vh 2vh;
-  font-size: 4vh;
-  height: 10vh;
-  width: 10vh;
+  margin-bottom: 50vh;
+  padding: 10px 10px;
+  font-size: 32px;
+  height: 60px;
+  width: 60px;
   border-radius: 100%;
   border: 0px;
-  background-color: rgb(0, 0, 0, 0);
+  background-color: rgba(255, 255, 255, 0);
   transition: transform 0.3s ease;
+  color: #000000;
+  margin-bottom: 5vh;
 }
 #close-tutorial:hover {
   color: #ffffff;
-  background-color: rgb(0, 0, 0, 0.3);
-  border-radius: 100%;
-  border: 0px;
-  transform: scale(1.3);
+  background-color: rgba(0, 0, 0, 0.5);
+  transform: scale(1.2);
+  cursor: pointer;
 }

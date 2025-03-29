@@ -10,7 +10,7 @@ const sizeOfContainer = 12;
 const numberOfIttem = 90;
 let displayItems = [];
 let score = 0;
-let winScore = 2; //let winScore = 10;
+let winScore = 10;
 let selectStatus = new Array(sizeOfContainer).fill(false);
 let mode = 0;
 
@@ -115,27 +115,29 @@ function checkItem() {
   return ansSelect;
 }
 
-//*************ชั่วคราวมากๆๆๆๆๆๆๆๆๆๆ*************//
-document.getElementById("win-skip").addEventListener("click", () => {
-  playCorreectEff();
-  document.getElementById("winModal").style.display = "block";
-  document.getElementById("manual-btn").style.display = "none";
-});
-document.getElementById("lose-skip").addEventListener("click", () => {
-  document.getElementById("manual-btn").style.display = "none";
-  newRound();
+//*************Temporary*************//
+// document.getElementById("win-skip").addEventListener("click", () => {
+//   playCorreectEff();
 
-  playWrongEff();
-  document.getElementById("wrongModal").style.display = "block";
-  document.getElementById("result").innerHTML = wrongText
-    .map((text) => {
-      return `<li>${text}</li>`;
-    })
-    .join("");
-  document.getElementById("lastscore").innerText =
-    "your score is " + score.toString();
-});
-//*************ชั่วคราวมากๆๆๆๆๆๆๆๆๆๆ*************//
+//   document.getElementById("winModal").style.display = "block";
+//   document.getElementById("score-result").innerHTML = `your score : ${score}`;
+//   document.getElementById("manual-btn").style.display = "none";
+// });
+// document.getElementById("lose-skip").addEventListener("click", () => {
+//   document.getElementById("manual-btn").style.display = "none";
+//   newRound();
+
+//   playWrongEff();
+//   document.getElementById("wrongModal").style.display = "block";
+//   document.getElementById("result").innerHTML = wrongText
+//     .map((text) => {
+//       return `<li>${text}</li>`;
+//     })
+//     .join("");
+//   document.getElementById("lastscore").innerText =
+//     "your score is " + score.toString();
+// });
+//*************Temporary*************//
 
 //done button to finish this round
 document.getElementById("done-btn").addEventListener("click", () => {
@@ -156,6 +158,10 @@ document.getElementById("done-btn").addEventListener("click", () => {
     score += 1;
     if (score == winScore) {
       document.getElementById("winModal").style.display = "block";
+
+      document.getElementById(
+        "score-result"
+      ).innerHTML = `your score : ${score}`;
       document.getElementById("manual-btn").style.display = "none";
     } else {
       newRound();
@@ -177,7 +183,7 @@ document.getElementById("done-btn").addEventListener("click", () => {
 
 // When the user clicks on <span> (x), close the modal
 document.getElementsByClassName("restart")[0].onclick = function () {
-  window.location.href = "index.html";
+  window.location.href = "play.html";
 };
 
 document.getElementsByClassName("restart")[1].onclick = function () {
@@ -223,6 +229,7 @@ document.getElementsByClassName("close")[0].onclick = function () {
 function openContainer() {
   document.getElementById("play-container").style.display = "block";
   document.getElementsByClassName("conveyor")[0].style.display = "none";
+  document.getElementById("name").style.display = "none";
 }
 
 function nextContainer() {
@@ -250,25 +257,6 @@ function playWrongEff() {
 function playCorreectEff() {
   var sound = document.getElementById("correct-eff");
   sound.play();
-}
-belt;
-window.onload = updateScreenWidth;
-window.addEventListener("resize", updateScreenWidth);
-const item = document.querySelector(".circle-belt");
-const container = document.getElementById("belt");
-function updateScreenWidth() {
-  const screenWidth = window.innerWidth;
-  console.log(screenWidth);
-  const itemCount = screenWidth / 13;
-
-  container.innerHTML = "";
-
-  for (let i = 0; i < itemCount; i++) {
-    const copiedItem = item.cloneNode(true);
-    const randomDelay = Math.random() * 2;
-    copiedItem.style.animationDelay = `${randomDelay}s`;
-    container.appendChild(copiedItem);
-  }
 }
 
 // In your script.js or within <script> tags

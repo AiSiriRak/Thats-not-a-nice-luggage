@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="style1.css" />
   </head>
   <body>
-    <audio id="backgroundAudio" loop>
-      <source src="../sound/test.mp3" type="audio/mpeg" />
-    </audio>
     <div id="tutorial-container">
       <div id="tutorial-page">
         <h1>How To Play</h1>
+        <p>1. กดไปที่กระเป๋า</p>
+        <img class="img-item" src="../image/Tutorial_01.png" />
+        <p>2. คลิ๊กซ้ายเพื่อเลือกหรือคลิ๊กขวาเพื่อดูรายละเอียด</p>
+        <img class="img-item" src="../image/Tutorial_02.png" />
+        <p>3. ผู้เล่นสามารถดูคำแนะนำได้ที่ guide book ด้านขวาล่าง</p>
+        <img class="img-item" src="../image/Tutorial_03.png" />
         <button id="close-tutorial">x</button>
       </div>
       <div class="shadow"></div>
@@ -30,7 +33,6 @@
               const container = document.getElementById("belt");
               function updateScreenWidth() {
                 const screenWidth = window.innerWidth;
-                console.log(screenWidth);
                 const itemCount = screenWidth / 13;
 
                 container.innerHTML = "";
