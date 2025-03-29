@@ -271,29 +271,38 @@ function updateScreenWidth() {
   }
 }
 
-const audio = document.getElementById("backgroundAudio");
-const soundBtn = document.getElementById("toggleSound");
-const volumeSlider = document.getElementById("volumeSlider");
+// In your script.js or within <script> tags
+document.addEventListener("DOMContentLoaded", function () {
+  const audio = document.getElementById("backgroundAudio");
+  const toggleBtn = document.getElementById("toggleSound");
+  const volumeSlider = document.getElementById("volumeSlider");
 
-// Initialize audio (muted by default due to browser autoplay policies)
-audio.volume = 0.7;
-audio.muted = true;
-volumeSlider.value = 0.7;
-
-// Toggle mute/unmute
-soundBtn.addEventListener("click", () => {
-  audio.muted = !audio.muted;
-  soundBtn.textContent = audio.muted ? "🔇" : "🔊";
-});
-
-// Volume control
-volumeSlider.addEventListener("input", () => {
+  // Initialize audio (will be muted by default due to autoplay policies)
   audio.volume = volumeSlider.value;
-  if (audio.muted && volumeSlider.value > 0) {
-    audio.muted = false;
-    soundBtn.textContent = "🔊";
-  }
-});
 
-// Try to autoplay (may not work due to browser restrictions)
-audio.play().catch((e) => console.log("Autoplay prevented:", e));
+  // Try to unmute automatically (may not work in all browsers)
+  const tryUnmute = () => {
+    audio.muted = false;
+    toggleBtn.textContent = "🔊";
+    audio.play().catch((e) => {
+      // If autoplay fails, keep muted and show muted icon
+      audio.muted = true;
+      toggleBtn.textContent = "🔇";
+    });
+  };
+
+  // Attempt unmute on any user interaction
+  document.body.addEventListener("click", tryUnmute, { once: true });
+
+  // Toggle button functionality
+  toggleBtn.addEventListener("click", () => {
+    audio.muted = !audio.muted;
+    toggleBtn.textContent = audio.muted ? "🔇" : "🔊";
+    if (!audio.muted) audio.play();
+  });
+
+  // Volume control
+  volumeSlider.addEventListener("input", () => {
+    audio.volume = volumeSlider.value;
+  });
+});
