@@ -195,11 +195,11 @@ document.querySelectorAll(".home-btn").forEach((button) => {
 });
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == document.getElementById("wrongModal")) {
-    document.getElementById("wrongModal").style.display = "none";
-  }
-};
+// window.onclick = function (event) {
+//   if (event.target == document.getElementById("wrongModal")) {
+//     document.getElementById("wrongModal").style.display = "none";
+//   }
+// };
 
 document.getElementById("setting-modal").style.display = "none";
 
@@ -259,37 +259,30 @@ function playCorreectEff() {
   sound.play();
 }
 
-// In your script.js or within <script> tags
 document.addEventListener("DOMContentLoaded", function () {
   const audio = document.getElementById("backgroundAudio");
   const toggleBtn = document.getElementById("toggleSound");
   const volumeSlider = document.getElementById("volumeSlider");
 
-  // Initialize audio (will be muted by default due to autoplay policies)
   audio.volume = volumeSlider.value;
 
-  // Try to unmute automatically (may not work in all browsers)
   const tryUnmute = () => {
     audio.muted = false;
     toggleBtn.textContent = "🔊";
     audio.play().catch((e) => {
-      // If autoplay fails, keep muted and show muted icon
       audio.muted = true;
       toggleBtn.textContent = "🔇";
     });
   };
 
-  // Attempt unmute on any user interaction
   document.body.addEventListener("click", tryUnmute, { once: true });
 
-  // Toggle button functionality
   toggleBtn.addEventListener("click", () => {
     audio.muted = !audio.muted;
     toggleBtn.textContent = audio.muted ? "🔇" : "🔊";
     if (!audio.muted) audio.play();
   });
 
-  // Volume control
   volumeSlider.addEventListener("input", () => {
     audio.volume = volumeSlider.value;
   });
